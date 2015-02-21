@@ -1,13 +1,13 @@
 import java.util.LinkedList;
 
-public class Collatz implements java.util.Iterator<Integer>{
+public class SalehObj implements java.util.Iterator<Integer>{
 	
 	private int length=0;
 	private int threshold=0;
 	private int itr=-1;
 	private LinkedList<Integer> list = new LinkedList<Integer>();
 	
-	Collatz(int num){
+	SalehObj(int num){
 		threshold = num;
 		generate(num);
 	}
