@@ -27,7 +27,7 @@ public class SalehObj implements java.util.Iterator<Integer>{
 	}
 	
 	public int getThreshold(){
-		return length;
+		return threshold;
 	}
 	public int getLength(){
 		return length;
