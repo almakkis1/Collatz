@@ -1,49 +1,88 @@
-import java.util.LinkedList;
+import java.util.*;
 
 public class SalehObj implements java.util.Iterator<Integer>{
 	
-	private int length=0;
-	private int threshold=0;
+	private int longestChain;
+	private int threshold;
 	private int itr=-1;
-	private LinkedList<Integer> list = new LinkedList<Integer>();
+	private ArrayList<Integer> list = new ArrayList<Integer>();
+	//private HashMap<Integer, Integer> list = new HashMap<Integer, Integer>();
 	
-	SalehObj(int num){
-		threshold = num;
-		generate(num);
+	SalehObj(int threshold){
+		this.threshold = 0;
+		this.longestChain = 0;
+		generate(threshold);
 	}
 	
-	private void generate(int num){
-		double result=num;
+	private void generate(int threshold){
+		for (int num=threshold; num >1 ; num--){
+			ArrayList<Integer> currentList = new ArrayList<Integer>();
+
+			double result=num;
+			while(result > 1){
+				
+				if (list.indexOf(result) != -1){
+					if (result == list.get(0))
+						currentList.addAll(list);
+					
+					result = 0;
+				}
+				else
+					currentList.add((int)result);
+				
+				
+				if (result%2==0.0)
+					result = result/2;
+				else
+					result = 3 * result + 1;
+				
+				
+			}
+	
+			list = currentList;
+		}
 		
-		while(result > 1){
-			if (result%2==0)
-				result = result/2;
-			else
-				result = 3 * result + 1;
-			list.add((int)result);
-			length++;
+	}
+	
+	private void generate2(int threshold){
+		for(int i=2; i<threshold; i++){
+			LinkedList<Integer> currentList = new LinkedList<Integer>();
+			currentList.add(i);
+			double result=i;
+			while(result > 1){
+				if (result%2==0.0)
+					result = result/2;
+				else
+					result = 3 * result + 1;
+				
+				currentList.add((int)result);
+			}
+			if (currentList.size() > longestChain){
+				this.longestChain = currentList.size();
+				this.threshold = i;
+			}
 		}
 		
 	}
 	
 	public int getThreshold(){
-		return threshold;
+		return list.get(0);
 	}
 	public int getLength(){
-		return length;
+		return list.size();
 	}
 
 	@Override
 	public boolean hasNext() {
-		return itr <= length;
+		return itr <= longestChain;
 	}
 
 	@Override
 	public Integer next() {
-		if (itr >= length)
+		if (itr >= longestChain)
 			throw new ArrayIndexOutOfBoundsException(itr);
 		else
-			return list.get(++itr);
+			return 3;
 		
 	}
 	
