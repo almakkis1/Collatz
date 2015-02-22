@@ -2,87 +2,83 @@ import java.util.*;
 
 public class SalehObj implements java.util.Iterator<Integer>{
 	
-	private int longestChain;
-	private int threshold;
-	private int itr=-1;
+	private int chainLength;
+	private int startingNum;
+	private int itr;
 	private ArrayList<Integer> list = new ArrayList<Integer>();
-	//private HashMap<Integer, Integer> list = new HashMap<Integer, Integer>();
 	
 	SalehObj(int threshold){
-		this.threshold = 0;
-		this.longestChain = 0;
+		this.startingNum = 0;
+		this.chainLength = 0;
+		itr=0;
 		generate(threshold);
 	}
 	
 	private void generate(int threshold){
-		for (int num=threshold; num >1 ; num--){
-			ArrayList<Integer> currentList = new ArrayList<Integer>();
-
+		
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		temp.add(0);
+		for (int num=1; num <=threshold ; num++){
+			int length=1;
 			double result=num;
+			
 			while(result > 1){
-				
-				if (list.indexOf(result) != -1){
-					if (result == list.get(0))
-						currentList.addAll(list);
-					
-					result = 0;
-				}
-				else
-					currentList.add((int)result);
-				
-				
+
 				if (result%2==0.0)
 					result = result/2;
 				else
 					result = 3 * result + 1;
-				
+
+				if (result < num){
+					length = length + temp.get((int)result);
+					result=0;
+				}
+				else
+					length++;
 				
 			}
-	
-			list = currentList;
+			temp.add(length);
+			if(length > this.chainLength){
+				this.chainLength = length;
+				this.startingNum = num;
+			}
+			
 		}
+		generateChainElements();
 		
 	}
 	
-	private void generate2(int threshold){
-		for(int i=2; i<threshold; i++){
-			LinkedList<Integer> currentList = new LinkedList<Integer>();
-			currentList.add(i);
-			double result=i;
-			while(result > 1){
-				if (result%2==0.0)
-					result = result/2;
-				else
-					result = 3 * result + 1;
-				
-				currentList.add((int)result);
-			}
-			if (currentList.size() > longestChain){
-				this.longestChain = currentList.size();
-				this.threshold = i;
-			}
+	private void generateChainElements(){
+		double result= (int)this.startingNum;
+		this.list.add((int)result);
+		while(result > 1){
+			if (result%2==0.0)
+				result = result/2;
+			else
+				result = 3 * result + 1;
+			
+			this.list.add((int)result);
 		}
-		
 	}
 	
 	public int getThreshold(){
-		return list.get(0);
+		return this.startingNum;
 	}
 	public int getLength(){
-		return list.size();
+		return this.chainLength;
 	}
 
 	@Override
 	public boolean hasNext() {
-		return itr <= longestChain;
+		return itr < chainLength;
 	}
 
 	@Override
 	public Integer next() {
-		if (itr >= longestChain)
-			throw new ArrayIndexOutOfBoundsException(itr);
+		if (hasNext())
+			return list.get(itr++);
 		else
-			return 3;
+			throw new ArrayIndexOutOfBoundsException(itr);
 		
 	}
 	
