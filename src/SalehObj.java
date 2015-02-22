@@ -2,8 +2,8 @@ import java.util.*;
 
 public class SalehObj implements java.util.Iterator<Integer>{
 	
-	private int chainLength;
 	private int startingNum;
+	private int chainLength;
 	private int itr;
 	private ArrayList<Integer> list = new ArrayList<Integer>();
 	
@@ -11,14 +11,15 @@ public class SalehObj implements java.util.Iterator<Integer>{
 		this.startingNum = 0;
 		this.chainLength = 0;
 		itr=0;
-		generate(threshold);
+		findLongest(threshold);
+		generateChainElements();
 	}
 	
-	private void generate(int threshold){
+	private void findLongest(int threshold){
 		
 		ArrayList<Integer> temp = new ArrayList<Integer>();
 		temp.add(0);
-		for (int num=1; num <=threshold ; num++){
+		for (int num=1; num <threshold ; num++){
 			int length=1;
 			double result=num;
 			
@@ -35,17 +36,14 @@ public class SalehObj implements java.util.Iterator<Integer>{
 				}
 				else
 					length++;
-				
 			}
+			
 			temp.add(length);
 			if(length > this.chainLength){
 				this.chainLength = length;
 				this.startingNum = num;
 			}
-			
-		}
-		generateChainElements();
-		
+		}	
 	}
 	
 	private void generateChainElements(){
@@ -79,7 +77,6 @@ public class SalehObj implements java.util.Iterator<Integer>{
 			return list.get(itr++);
 		else
 			throw new ArrayIndexOutOfBoundsException(itr);
-		
 	}
 	
 }
