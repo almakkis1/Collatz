@@ -4,13 +4,13 @@ public class main {
 	
 	public static void main(String[] args) {
 		
-		int num = 5000000;
+		int num = 1000000;
 		
 		double start = System.currentTimeMillis();
 		// you only need to change this line to your class name to test your code.. my class name is SalehObj
-		SalehObj A = new SalehObj (num);
-		LatifObject
-		TianObj C = new TianObj(num);
+		//SalehObj A = new SalehObj (num);
+		//LatifObject A = new LatifObject(num)
+		TianObj A = new TianObj(num);
 		double end = System.currentTimeMillis();
 		double time = (end-start)/1000;		
 		
