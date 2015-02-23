@@ -32,7 +32,6 @@ public class SalehObj implements java.util.Iterator<Integer>{
 
 				if (result < num){
 					length = length + temp.get((int)result);
-					break;
 				}
 				else
 					length++;
