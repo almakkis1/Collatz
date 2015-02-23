@@ -9,6 +9,7 @@ public class main {
 		double start = System.currentTimeMillis();
 		// you only need to change this line to your class name to test your code.. my class name is SalehObj
 		SalehObj A = new SalehObj (num);
+		LatifObject
 		double end = System.currentTimeMillis();
 		double time = (end-start)/1000;		
 		
