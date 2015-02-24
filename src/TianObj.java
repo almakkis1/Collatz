@@ -22,12 +22,12 @@ public class TianObj implements Iterator<Integer>{
 		int value = 1;
 		int searchStartNum = 1;
 		if( threshold % 2 == 0){
-		  searchStartNum = searchStartNum / 2 + 1;
+		  searchStartNum = threshold / 2 + 1;
 		}
 		else{
-		  searchStartNum = (searchStartNum - 1) / 2;
+		  searchStartNum = (threshold - 1) / 2;
 		}
-		for (int num = 1; num < threshold + 1; num++){
+		for (int num = searchStartNum; num < threshold + 1; num++){
 		  if( (num - 1) % 3 != 0){
 			  temp = chainGenerator(num);
 			  if(temp.size() > longestLength){
