@@ -1,42 +1,39 @@
 import java.util.*;
 
 public class SalehObj implements java.util.Iterator<Integer>{
-	private int startingNum; //starting number of the longest chain
-	private int chainLength; //length of the longest chain
+
 	private int itr;         //iterator for hasNext() and next() methods
 	private ArrayList<Integer> list = new ArrayList<Integer>(); //list to hold longest chain elements
 	
 	
 	SalehObj(int threshold){
 	  //set up the values with 0
-		this.startingNum = 0;
-		this.chainLength = 0;
 		this.itr=0;
-		//find longest chain and generate its elements
-		findLongest(threshold);
-		generateChainElements();
+		
+		findLengths(threshold); //find length of all number chains under that threshold
+		findLongest();  //find Longest chain
 	}
 	
 	//this method is to search for the starting number that can generate the longest chain
-	private void findLongest(int threshold){
+	private void findLengths(int threshold){
 	  
-		this.list.add(0);
+		this.list.add(0);//index 0 has length 0
 		
 		for (int num=1; num <threshold ; num++){
 			int length=1;
-			double result=num;
+			double nextElement=num;
 			
-			while(result > 1){
+			while(nextElement > 1){
 			  //find the next element
-				if (result%2==0.0)
-					result = result/2;
+				if (nextElement%2==0.0)
+				  nextElement = nextElement/2;
 				else
-					result = 3 * result + 1;
+				  nextElement = 3 * nextElement + 1;
 
 				//check if this result already computed
-				if (result < num){
-					length = length + this.list.get((int)result);
-					result=0;//add the length and stop here, result=0 means break
+				if (nextElement < num){
+					length = length + this.list.get((int)nextElement);
+					break;//add the length and stop here, result=0 means break
 				}
 				else
 					length++;
@@ -48,42 +45,51 @@ public class SalehObj implements java.util.Iterator<Integer>{
 		
 	}
 	
-	//this is the generator of the elements. longest chain is known
-	private void generateChainElements(){
-	  //search for the longest chain
-	  //   - indexes represent the starting numbers. 
+	//this method is to find the index that has the longest chain
+	private void findLongest(){
+
+	  int longest=0;
+	  int startingNum=0;
+    //   - indexes represent the starting numbers. 
     //   - elements represent the length value (NOT THE CHAIN, JUST LENGTH VALUE)
-	  while (hasNext())
-	  {
-	    int length = next();
+    while (hasNext())
+    {
+      int length = next();
       //if this is the longest, update data
-      if( length> this.chainLength){
-        this.chainLength = length;
-        this.startingNum = list.indexOf(length);
+      if( length> longest){
+        longest = length;
+        startingNum = list.indexOf(length);
       }
-	  }
-    
-	  //add the starting number first
-	  this.list.clear();
-		this.list.add(this.startingNum); 
-		
-		//calculate the other elements and add them to the list
-		double result= (int)this.startingNum;
-		while(result > 1){
-			if (result%2==0.0)
-				result = result/2;
-			else
-				result = 3 * result + 1;
-			
-			this.list.add((int)result);
-		}
+    }
+    itr=0; //reset iterator for the new chain
+    generateChainElements(startingNum); //generate elements for the longest chain
 	}
 	
-	public int getThreshold(){
-		return this.startingNum;
+	//this is the generator of the elements. longest chain is known
+	private void generateChainElements(int startingNum ){
+
+	  //add the starting number first
+	  this.list.clear();
+		this.list.add(startingNum); 
+		
+		//calculate the other elements and add them to the list
+		double nextElement= (int)startingNum;
+		while(nextElement > 1){
+			if (nextElement%2==0.0)
+			  nextElement = nextElement/2;
+			else
+			  nextElement = 3 * nextElement + 1;
+			
+			this.list.add((int)nextElement);
+		}
+		
+	}
+	
+	public Integer getStartingNumber(){
+		return this.list.get(0);
 	}
 	public int getLength(){
-		return this.chainLength;
+		return this.list.size();
 	}
 
 	@Override
