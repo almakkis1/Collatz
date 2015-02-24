@@ -20,12 +20,21 @@ public class TianObj implements Iterator<Integer>{
 		ArrayList<Integer> temp = new ArrayList<Integer>();
 		int longestLength = 1;
 		int value = 1;
+		int searchStartNum = 1;
+		if( threshold % 2 == 0){
+		  searchStartNum = searchStartNum / 2 + 1;
+		}
+		else{
+		  searchStartNum = (searchStartNum - 1) / 2;
+		}
 		for (int num = 1; num < threshold + 1; num++){
-			temp = chainGenerator(num);
-			if(temp.size() > longestLength){
-				longestLength = temp.size();
-				value = num;
-			}
+		  if( (num - 1) % 3 != 0){
+			  temp = chainGenerator(num);
+			  if(temp.size() > longestLength){
+			    longestLength = temp.size();
+			    value = num;
+			  }
+		  }
 		}
 		this.chainLength = longestLength;
 		this.startNum = value;
