@@ -1,3 +1,4 @@
+package main;
 import java.util.*;
 
 public class SalehObj implements java.util.Iterator<Integer>{
@@ -9,12 +10,13 @@ public class SalehObj implements java.util.Iterator<Integer>{
 	SalehObj(int threshold){
 	  //set up the values with 0
 		this.itr=0;
-		
 		findLengths(threshold); //find length of all number chains under that threshold
 		findLongest();  //find Longest chain
 	}
 	
 	//this method is to find the length of each starting's number chain
+  //   - indexes represent the starting numbers. 
+  //   - elements represent the length value (NOT THE CHAIN, JUST LENGTH VALUE)
 	private void findLengths(int threshold){
 	  
 		this.list.add(0);//index 0 has length 0
