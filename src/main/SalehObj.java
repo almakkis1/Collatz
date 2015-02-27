@@ -7,7 +7,7 @@ public class SalehObj implements java.util.Iterator<Integer>{
 	private ArrayList<Integer> list = new ArrayList<Integer>(); //list to hold longest chain elements
 	
 	
-	SalehObj(int threshold){
+	public SalehObj(int threshold){
 	  //set up the values with 0
 		this.itr=0;
 		findLengths(threshold); //find length of all number chains under that threshold
@@ -23,11 +23,11 @@ public class SalehObj implements java.util.Iterator<Integer>{
 		
 		for (int num=1; num <threshold ; num++){
 			int length=1;
-			double nextElement=num;
+			long nextElement=num;
 			
 			while(nextElement > 1){
 			  //find the next element
-				if (nextElement%2==0.0)
+				if (nextElement%2==0)
 				  nextElement = nextElement/2;
 				else
 				  nextElement = 3 * nextElement + 1;
@@ -75,9 +75,9 @@ public class SalehObj implements java.util.Iterator<Integer>{
 		this.list.add(startingNum); 
 		
 		//calculate the other elements and add them to the list
-		double nextElement= (int)startingNum;
+		long nextElement= startingNum;
 		while(nextElement > 1){
-			if (nextElement%2==0.0)
+			if (nextElement%2==0)
 			  nextElement = nextElement/2;
 			else
 			  nextElement = 3 * nextElement + 1;

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.0" sequence="1" timestamp="1424989526106" analysisTimestamp="1424989525239" release="">
+  <Project projectName="Collatz">
+    <Jar>C:\Users\Saleh\Documents\GitHub\Collatz\target\classes</Jar>
+    <AuxClasspathEntry>C:\Users\Saleh\Documents\GitHub\Collatz\target\classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Program Files\Java\jre1.8.0_25\lib\rt.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\Saleh\Documents\GitHub\Collatz\src</SrcDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="IT_NO_SUCH_ELEMENT" priority="2" rank="16" abbrev="It" category="BAD_PRACTICE" first="1">
+    <Class classname="main.LatifObject">
+      <SourceLine classname="main.LatifObject" sourcefile="LatifObject.java" sourcepath="main/LatifObject.java"/>
+    </Class>
+    <Method classname="main.LatifObject" name="next" signature="()Ljava/lang/Integer;" isStatic="false">
+      <SourceLine classname="main.LatifObject" start="32" end="32" startBytecode="0" endBytecode="43" sourcefile="LatifObject.java" sourcepath="main/LatifObject.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="main.TianObj">
+      <SourceLine classname="main.TianObj" sourcefile="TianObj.java" sourcepath="main/TianObj.java"/>
+    </Class>
+    <Method classname="main.TianObj" name="findLongest" signature="(I)V" isStatic="false">
+      <SourceLine classname="main.TianObj" start="21" end="42" startBytecode="0" endBytecode="61" sourcefile="TianObj.java" sourcepath="main/TianObj.java"/>
+    </Method>
+    <LocalVariable name="temp" register="2" pc="8" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="main.TianObj" start="21" end="21" startBytecode="7" endBytecode="7" sourcefile="TianObj.java" sourcepath="main/TianObj.java"/>
+    <SourceLine classname="main.TianObj" start="21" end="21" startBytecode="7" endBytecode="7" sourcefile="TianObj.java" sourcepath="main/TianObj.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.KILLED_BY_SUBSEQUENT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.DEAD_OBJECT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="temp"/>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" rank="16" abbrev="Nm" category="BAD_PRACTICE" first="1">
+    <Class classname="main.main">
+      <SourceLine classname="main.main" start="2" end="20" sourcefile="main.java" sourcepath="main/main.java"/>
+    </Class>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Thu, 26 Feb 2015 17:13:19 -0500" total_classes="4" referenced_classes="21" total_bugs="3" total_size="140" num_packages="1" java_version="1.8.0_25" vm_version="25.25-b02" cpu_seconds="24.66" clock_seconds="247.80" peak_mbytes="510.85" alloc_mbytes="455.50" gc_seconds="2.78" priority_2="3">
+    <PackageStats package="main" total_bugs="3" total_types="4" total_size="140" priority_2="3">
+      <ClassStats class="main.LatifObject" sourceFile="LatifObject.java" interface="false" size="13" bugs="1" priority_2="1"/>
+      <ClassStats class="main.SalehObj" sourceFile="SalehObj.java" interface="false" size="58" bugs="0"/>
+      <ClassStats class="main.TianObj" sourceFile="TianObj.java" interface="false" size="55" bugs="1" priority_2="1"/>
+      <ClassStats class="main.main" sourceFile="main.java" interface="false" size="14" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="336" invocations="356" avgMicrosecondsPerInvocation="945" maxMicrosecondsPerInvocation="39453" standardDeviationMircosecondsPerInvocation="2682"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="113" invocations="2" avgMicrosecondsPerInvocation="56908" maxMicrosecondsPerInvocation="97492" standardDeviationMircosecondsPerInvocation="40583"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="49" invocations="356" avgMicrosecondsPerInvocation="138" maxMicrosecondsPerInvocation="705" standardDeviationMircosecondsPerInvocation="85"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="35" invocations="21" avgMicrosecondsPerInvocation="1668" maxMicrosecondsPerInvocation="8276" standardDeviationMircosecondsPerInvocation="2297"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="32" invocations="99" avgMicrosecondsPerInvocation="323" maxMicrosecondsPerInvocation="2695" standardDeviationMircosecondsPerInvocation="386"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="21" invocations="24" avgMicrosecondsPerInvocation="886" maxMicrosecondsPerInvocation="4906" standardDeviationMircosecondsPerInvocation="1289"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="18" invocations="324" avgMicrosecondsPerInvocation="55" maxMicrosecondsPerInvocation="669" standardDeviationMircosecondsPerInvocation="83"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="14" invocations="25" avgMicrosecondsPerInvocation="579" maxMicrosecondsPerInvocation="3209" standardDeviationMircosecondsPerInvocation="761"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="11" invocations="24" avgMicrosecondsPerInvocation="489" maxMicrosecondsPerInvocation="2744" standardDeviationMircosecondsPerInvocation="590"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="11" invocations="21" avgMicrosecondsPerInvocation="557" maxMicrosecondsPerInvocation="2929" standardDeviationMircosecondsPerInvocation="684"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1424989526106" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>
