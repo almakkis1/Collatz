@@ -19,7 +19,7 @@ public class Collatz implements java.util.Iterator<Integer>{
   public void run(){
       findLengths();    //find length of all number chains under that threshold
       findStartingNum();    //find starting number that can generate Longest chain
-      generateChainElements(); //generate elements for the longest chain
+      //generateChainElements(); //generate elements for the longest chain
   }
   
   //this method is to find the chain length of each starting number
