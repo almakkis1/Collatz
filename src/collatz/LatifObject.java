@@ -1,7 +1,7 @@
-package main;
+package collatz;
 import java.util.*;
 
-public class LatifObject implements Iterator
+public class LatifObject implements Iterator<Iterator>
 {
 	LatifObject(int num){
 		generate(num);
@@ -27,7 +27,7 @@ public class LatifObject implements Iterator
 	}
 
 	@Override
-	public Integer next() {
+	public Iterator next() {
 		// TODO Auto-generated method stub
 		return null;
 	}

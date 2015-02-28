@@ -1,30 +1,38 @@
-package main;
+package collatz;
 import java.util.*;
 
 public class SalehObj implements java.util.Iterator<Integer>{
-
+  private int threshold;
+  private int startingNum;
 	private int itr;         //iterator for hasNext() and next() methods
-	private ArrayList<Integer> list = new ArrayList<Integer>(); //list to hold longest chain elements
+	private ArrayList<Integer> list; //list to hold longest chain elements
 	
 	
 	public SalehObj(int threshold){
-	  //set up the values with 0
+	  //set up the values
+	  this.startingNum = 0;
 		this.itr=0;
-		findLengths(threshold); //find length of all number chains under that threshold
-		findLongest();  //find Longest chain
+		this.list = new ArrayList<Integer>();
+		this.threshold = threshold;
 	}
 	
-	//this method is to find the length of each starting's number chain
+	public void run(){
+	    findLengths();    //find length of all number chains under that threshold
+	    findStartingNum();    //find starting number that can generate Longest chain
+	    generateChainElements(); //generate elements for the longest chain
+	}
+	
+	//this method is to find the chain length of each starting number
   //   - indexes represent the starting numbers. 
   //   - elements represent the length value (NOT THE CHAIN, JUST LENGTH VALUE)
-	private void findLengths(int threshold){
-	  
-		this.list.add(0);//index 0 has length 0
+	public void findLengths(){
+	  list.clear();
+		list.add(0);//index 0 has length 0
 		
 		for (int num=1; num <threshold ; num++){
 			int length=1;
-			long nextElement=num;
 			
+			long nextElement=num;
 			while(nextElement > 1){
 			  //find the next element
 				if (nextElement%2==0)
@@ -34,28 +42,26 @@ public class SalehObj implements java.util.Iterator<Integer>{
 
 				//check if this result already computed
 				if (nextElement < num){
-					length = length + this.list.get((int)nextElement);
-					break;//add the length and stop here, result=0 means break
+					length = length + list.get((int)nextElement);
+					break;//add the length and stop here
 				}
 				else
 					length++;
 			}
 			
-			this.list.add(length);
+			list.add(length);
 			
 		}	
 		
 	}
-	
-	//this method is to find the index that has the longest chain
-	private void findLongest(){
+	 
+	//this method is to find the index (index=starting number) that has the longest chain
+	private void findStartingNum(){
 
 	  int longest=0;
-	  int startingNum=0;
     //   - indexes represent the starting numbers. 
     //   - elements represent the length value (NOT THE CHAIN, JUST LENGTH VALUE)
-    while (hasNext())
-    {
+    while (hasNext()){
       int length = next();
       //if this is the longest, update data
       if( length> longest){
@@ -64,15 +70,15 @@ public class SalehObj implements java.util.Iterator<Integer>{
       }
     }
     itr=0; //reset iterator for the new chain
-    generateChainElements(startingNum); //generate elements for the longest chain
+    
 	}
 	
 	//this is the generator of the elements. longest chain is known
-	private void generateChainElements(int startingNum){
+	private void generateChainElements(){
 
 	  //add the starting number first
-	  this.list.clear();
-		this.list.add(startingNum); 
+	  list.clear();
+		list.add(startingNum); 
 		
 		//calculate the other elements and add them to the list
 		long nextElement= startingNum;
@@ -82,13 +88,13 @@ public class SalehObj implements java.util.Iterator<Integer>{
 			else
 			  nextElement = 3 * nextElement + 1;
 			
-			this.list.add((int)nextElement);
+			list.add((int)nextElement);
 		}
 		
 	}
 	
 	public Integer getStartingNumber(){
-		return this.list.get(0);
+		return this.startingNum;
 	}
 	public int getLength(){
 		return this.list.size();
